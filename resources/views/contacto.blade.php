@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Contacto</h1>
+    <x-titulo>Contacto</x-titulo>
+
     <p>Esta es la página para contactarte con {{ $nombre }}</p>
     <a href="/">Volver al inicio</a>
 </body>

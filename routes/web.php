@@ -19,8 +19,26 @@ Route::get('/productos/{id}', function ($id) {
     return "Esta es la página del producto $id";
 });
 
-// Tarea: crear una ruta llamada perfil que redirija a una página de perfil de ustedes y en esa página van a imprimir su nombre completo.
-
+Route::get('/perfil', function() {
+    $proyectos = [
+        [
+            'nombre' => 'Taller de Laravel',
+            'anio' => 2024,
+            'estado' => 'En curso',
+        ],
+        [
+            'nombre' => 'Curso de ChatGPT',
+            'anio' => 2024,
+            'estado' => 'Completado',
+        ],
+    ];
+    $nombre = 'Juan Carlos Ortiz';
+    return view('perfil', [
+        'nombre' => $nombre,
+        'proyectos' => $proyectos,
+    ]);
+    // return view('perfil', compact('nombre', 'proyectos'));
+})->name('perfil');
 
 
 
