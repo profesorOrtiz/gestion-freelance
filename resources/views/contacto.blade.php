@@ -11,5 +11,7 @@
 
     <p>Esta es la página para contactarte con {{ $nombre }}</p>
     <a href="/">Volver al inicio</a>
+
+    <x-footer />
 </body>
 </html>

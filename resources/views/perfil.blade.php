@@ -33,5 +33,6 @@
     {{-- Tarea: crear un componente llamado footer cuyo texto será el siguiente:
     &copy; AÑO ACTUAL SU NOMBRE - Todos los derechos reservados.
         --}}
+    <x-footer />
 </body>
 </html>
