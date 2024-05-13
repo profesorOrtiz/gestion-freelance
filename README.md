@@ -41,14 +41,14 @@ npm install
 
 ```php
 APP_NAME='Gestion Freelance'
-APP_URL= // URL de la aplicación/servidor
+APP_URL=http://localhost
 
 DB_CONNECTION=mysql
-DB_HOST= // servidor de la base de datos
-DB_PORT= // puerto de la base de datos
-DB_DATABASE= // nombre de la base de datos a utilizar
-DB_USERNAME= // nombre del usuario usado para conectarse a la base de datos
-DB_PASSWORD= // contraseña del usuario de base de datos
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gestion_freelance
+DB_USERNAME=root
+DB_PASSWORD=
 ```
 
 4. Generar la clave de Larvel para la aplicación
@@ -57,7 +57,21 @@ DB_PASSWORD= // contraseña del usuario de base de datos
 php artisan key:generate
 ```
 
-5. En el caso de estar instalando en un servidor local, es necesario ejecutar el servidor
+5. Crear una base de datos llamada "gestion_freelance" en el servidor de base de datos MySQL de tu computadora.
+
+6. Ejecutar las migraciones para crear las tablas en la base de datos
+
+```sh
+php artisan migrate
+```
+
+7. En el caso de utilizar Vite para compilar los archivos CSS y Javascript, ejecutar el siguiente comando en una nueva pestaña de la terminal para iniciar Vite.
+
+```sh
+npm run dev
+```
+
+8. Finalmente, ejecutar el servidor
 
 ```sh
 php artisan serve
