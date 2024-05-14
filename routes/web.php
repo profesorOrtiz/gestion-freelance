@@ -1,44 +1,23 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contactanos', function () {
-    $nombre = 'Juan Carlos Ortiz';
-    return view('contacto', [
-        'nombre' => $nombre,
-        'email' => 'juan@email.com',
-    ]);
-})->name('contacto');
+Route::get('/contactanos', [ContactoController::class, 'mostrar'])
+    ->name('contacto');
 
-Route::get('/productos/{id}', function ($id) {
-    return "Esta es la página del producto $id";
-});
+Route::get('/productos/{id}', [ProductosController::class, 'mostrar'])
+    ->name('productos.mostrar');
 
-Route::get('/perfil', function() {
-    $proyectos = [
-        [
-            'nombre' => 'Taller de Laravel',
-            'anio' => 2024,
-            'estado' => 'En curso',
-        ],
-        [
-            'nombre' => 'Curso de ChatGPT',
-            'anio' => 2024,
-            'estado' => 'Completado',
-        ],
-    ];
-    $nombre = 'Juan Carlos Ortiz';
-    return view('perfil', [
-        'nombre' => $nombre,
-        'proyectos' => $proyectos,
-    ]);
-    // return view('perfil', compact('nombre', 'proyectos'));
-})->name('perfil');
+Route::get('/perfil', [PerfilController::class, 'mostrar'])
+    ->name('perfil');
 
 
 
