@@ -13,6 +13,9 @@ Route::get('/', function () {
 Route::get('/contactanos', [ContactoController::class, 'mostrar'])
     ->name('contacto');
 
+Route::post('/contactanos', [ContactoController::class, 'guardar'])
+    ->name('contacto.guardar');
+
 Route::get('/productos/{id}', [ProductosController::class, 'mostrar'])
     ->name('productos.mostrar');
 

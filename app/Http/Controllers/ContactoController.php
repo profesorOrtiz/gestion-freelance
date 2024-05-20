@@ -13,4 +13,8 @@ class ContactoController extends Controller
             'email' => 'juan@email.com',
         ]);
     }
+
+    public function guardar(Request $request) {
+        dd($request);
+    }
 }
