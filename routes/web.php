@@ -22,7 +22,22 @@ Route::get('/productos/{id}', [ProductosController::class, 'mostrar'])
 Route::get('/perfil', [PerfilController::class, 'mostrar'])
     ->name('perfil');
 
+// Rutas que empiezan con /admin
+Route::prefix('admin')->group(function() {
+    // Ruta efectiva: /admin/index
+    Route::get('/index', function() {
+        dd('Ruta index del admin');
+    });
 
+    // Ruta efectiva: /admin/usuarios
+    Route::get('/usuarios', function() {
+        dd('Ruta usuarios del admin');
+    });
+});
+
+Route::get('/usuarios', function() {
+    dd('Ruta usuarios comun');
+});
 
 
 
