@@ -9,6 +9,10 @@
                 <li>{{ $proyecto['nombre'] }}</li>
                 <li>{{ $proyecto['anio'] }}</li>
                 <li>{{ $proyecto['estado'] }}</li>
+                @if(count($proyecto) > 3)
+                <li>{{ $proyecto['rol'] }}</li>
+                <li>{{ $proyecto['supervisor'] }}</li>
+                @endif
             </ul>
         @endforeach
     @else
