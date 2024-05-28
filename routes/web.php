@@ -5,9 +5,14 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
+use App\Clases\Url;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/url', function() {
+    return Url::path();
 });
 
 Route::get('/contactanos', [ContactoController::class, 'mostrar'])
