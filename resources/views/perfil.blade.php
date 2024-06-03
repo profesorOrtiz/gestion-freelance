@@ -5,13 +5,18 @@
 
     @if($proyectos)
         @foreach ($proyectos as $proyecto)
-            <ul>
+            <ul class="mt-8">
                 <li>{{ $proyecto['nombre'] }}</li>
                 <li>{{ $proyecto['anio'] }}</li>
                 <li>{{ $proyecto['estado'] }}</li>
-                @if(count($proyecto) > 3)
+
+                @if($proyecto['tipo'] == 'web')
                 <li>{{ $proyecto['rol'] }}</li>
                 <li>{{ $proyecto['supervisor'] }}</li>
+                @endif
+
+                @if($proyecto['tipo'] == 'curso')
+                <li>{{ $proyecto['organizacion'] }}</li>
                 @endif
             </ul>
         @endforeach

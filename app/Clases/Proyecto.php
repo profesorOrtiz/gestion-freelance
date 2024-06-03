@@ -4,7 +4,8 @@ namespace App\Clases;
 
 use App\Interfaces\Arreglo;
 
-class Proyecto implements Arreglo {
+// Clase abstracta -> no podemos crear objetos de esta clase
+abstract class Proyecto implements Arreglo {
     private string $nombre;
     private int $anio;
     private string $estado;
@@ -30,11 +31,6 @@ class Proyecto implements Arreglo {
     }
 
     // 3) Métodos de interfaces
-    public function toArray(): array {
-        return [
-            'nombre' => $this->getNombre(),
-            'anio' => $this->getAnio(),
-            'estado' => $this->getEstado(),
-        ];
-    }
+    // Método abstracto, las clases hijas de esta clase se verán obligadas a redefinir el cuerpo del método
+    public abstract function toArray(): array;
 }

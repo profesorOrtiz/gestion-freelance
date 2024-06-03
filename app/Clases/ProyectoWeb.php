@@ -27,6 +27,7 @@ class ProyectoWeb extends Proyecto {
     // Sobrescritura de un método heredado
     public function toArray(): array {
         return [
+            'tipo' => 'web',
             'nombre' => $this->getNombre(),
             'anio' => $this->getAnio(),
             'estado' => $this->getEstado(),
