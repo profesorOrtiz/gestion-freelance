@@ -9,8 +9,9 @@ use App\Clases\ProyectoWeb;
 class PerfilController extends Controller
 {
     public function mostrar() {
-        $proyecto1 = new ProyectoCurso('Taller de Laravel', 2024, 'En curso', 'ISAM');
-        $proyecto2 = new ProyectoCurso('Curso de ChatGPT', 2024, 'Completado', 'Microsoft');
+        // Agregamos una \ delante de DateTime para indicarle a Laravel que esta clase no existe dentro del proyecto, sino que es una clase nativa de PHP
+        $proyecto1 = new ProyectoCurso('Taller de Laravel', 2024, 'En curso',  'ISAM');
+        $proyecto2 = new ProyectoCurso('Curso de ChatGPT', 2024, 'Completado',  'Microsoft');
         $proyecto3 = new ProyectoWeb('Proyecto de Restaurante', 2023, 'Completado', 'Pablo Slame y Gastón Caceres', 'Programador Full-Stack');
 
         $proyectos = [

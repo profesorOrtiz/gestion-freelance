@@ -3,9 +3,13 @@
 namespace App\Clases;
 
 use App\Interfaces\Arreglo;
+use App\Traits\Historico;
 
 // Clase abstracta -> no podemos crear objetos de esta clase
 abstract class Proyecto implements Arreglo {
+    // Implementar el trait Historico
+    use Historico;
+
     private string $nombre;
     private int $anio;
     private string $estado;
@@ -33,4 +37,8 @@ abstract class Proyecto implements Arreglo {
     // 3) Métodos de interfaces
     // Método abstracto, las clases hijas de esta clase se verán obligadas a redefinir el cuerpo del método
     public abstract function toArray(): array;
+
+    public function creacion(): string {
+        return "Creado el: " . $this->creado_en();
+    }
 }

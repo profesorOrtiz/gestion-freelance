@@ -22,6 +22,7 @@ class ProyectoCurso extends Proyecto {
     public function toArray(): array {
         return [
             'tipo' => 'curso',
+            'creacion' => $this->creacion(),
             'nombre' => $this->getNombre(),
             'anio' => $this->getAnio(),
             'estado' => $this->getEstado(),

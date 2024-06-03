@@ -6,6 +6,7 @@
     @if($proyectos)
         @foreach ($proyectos as $proyecto)
             <ul class="mt-8">
+                <li>{{ $proyecto['creacion'] }}</li>
                 <li>{{ $proyecto['nombre'] }}</li>
                 <li>{{ $proyecto['anio'] }}</li>
                 <li>{{ $proyecto['estado'] }}</li>
