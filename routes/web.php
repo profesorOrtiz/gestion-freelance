@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Clases\Url;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 
 Route::get('/url', function() {

@@ -21,7 +21,7 @@
     titulo.addEventListener("click", function() {
         // Definir la lógica del método que responde al evento
         // Muestra un popup en la página.
-        alert("Hiciste click en el titulo");
+        // alert("Hiciste click en el titulo");
         // Muestra el mensaje en la consola del navegador
         console.log("Hiciste click en el titulo");
     });
