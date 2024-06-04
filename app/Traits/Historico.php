@@ -10,7 +10,3 @@ trait Historico {
         return $fecha->format('d/m/Y H:i:s');
     }
 }
-
-interface Historico {
-    public function creado_en(): string;
-}
