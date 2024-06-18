@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
 use App\Clases\Url;
+use App\Http\Controllers\CursosController;
 
 Route::get('/', function () {
     return view('inicio');
@@ -26,6 +27,9 @@ Route::get('/productos/{id}', [ProductosController::class, 'mostrar'])
 
 Route::get('/perfil', [PerfilController::class, 'mostrar'])
     ->name('perfil');
+
+// Route::resource define automáticamente las 7 rutas de recurso y las enlaza con los métodos del controlador
+Route::resource('cursos', CursosController::class);
 
 // Rutas que empiezan con /admin
 Route::prefix('admin')->group(function() {
