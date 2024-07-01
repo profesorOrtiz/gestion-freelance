@@ -7,6 +7,7 @@ use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Route;
 use App\Clases\Url;
 use App\Http\Controllers\CursosController;
+use App\Http\Controllers\ArchivoController;
 
 Route::get('/', function () {
     return view('inicio');
@@ -31,6 +32,12 @@ Route::get('/perfil', [PerfilController::class, 'mostrar'])
 // Route::resource define automáticamente las 7 rutas de recurso y las enlaza con los métodos del controlador
 Route::resource('cursos', CursosController::class);
 
+Route::get('/archivo/create', [ArchivoController::class, 'create'])
+    ->name('archivo.create');
+
+Route::post('/archivo', [ArchivoController::class, 'store'])
+    ->name('archivo.store');
+
 // Rutas que empiezan con /admin
 Route::prefix('admin')->group(function() {
     // Ruta efectiva: /admin/index
@@ -47,10 +54,6 @@ Route::prefix('admin')->group(function() {
 Route::get('/usuarios', function() {
     dd('Ruta usuarios comun');
 });
-
-
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
