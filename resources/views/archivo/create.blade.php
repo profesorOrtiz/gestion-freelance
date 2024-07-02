@@ -13,6 +13,9 @@
             @error('archivo')
                 <p class="text-red-800">{{ $message }}</p>
             @enderror
+            @if (session('exito'))
+                <p>{{ session('exito') }}</p>
+            @endif
         </div>
 
         <div class="mt-5">

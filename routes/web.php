@@ -32,6 +32,9 @@ Route::get('/perfil', [PerfilController::class, 'mostrar'])
 // Route::resource define automáticamente las 7 rutas de recurso y las enlaza con los métodos del controlador
 Route::resource('cursos', CursosController::class);
 
+Route::get('/ver-archivo', [ArchivoController::class, 'show'])
+    ->name('archivo.show');
+
 Route::get('/archivo/create', [ArchivoController::class, 'create'])
     ->name('archivo.create');
 
