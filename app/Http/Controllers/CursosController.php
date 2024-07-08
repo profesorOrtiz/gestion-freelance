@@ -25,7 +25,7 @@ class CursosController extends Controller
     public function create()
     {
         // Mostrar el formulario para crear un curso
-        dd("Formulario para crear un curso");
+        return view('cursos.create');
     }
 
     /**
@@ -34,6 +34,10 @@ class CursosController extends Controller
     public function store(Request $request)
     {
         dd("Guardar el nuevo curso");
+        // 1) Comprobar si el usuario tiene permisos para crear
+        // 2) Validar los datos del curso a crear -> Form Request
+        // 3) Guardar el curso en la BD
+        // 4) Redirigir al usuario a la pagina de index del curso
     }
 
     /**
@@ -101,7 +105,11 @@ class CursosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        dd("Petición para eliminar un curso");
+        // 1) Comprobar si el usuario tiene permisos para eliminar
+        // 2) Comprobar si existe el curso a eliminar
+        // 3) Eliminar el curso en la BD
+        // 4) Redirigir al usuario a la pagina de index del curso
     }
 
     // Emula los datos guardados en una BD
