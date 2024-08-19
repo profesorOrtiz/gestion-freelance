@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
 use Illuminate\Http\Request;
 
 class CursosController extends Controller
@@ -12,7 +13,13 @@ class CursosController extends Controller
     public function index()
     {
         // 1) Buscar todos los registros del recurso
-        $cursos = $this->datos();
+
+        // SELECT * FROM cursos;
+        $cursos = Curso::all();
+
+        // SELECT * FROM cursos WHERE nivel = 'Avanzado';
+        // $cursos = Curso::where('nivel', 'Avanzado')->get();
+
         // 2) Devolver la vista del listado con los registros
         return view('cursos.index', [
             'cursos' => $cursos,
@@ -33,11 +40,26 @@ class CursosController extends Controller
      */
     public function store(Request $request)
     {
-        dd("Guardar el nuevo curso");
         // 1) Comprobar si el usuario tiene permisos para crear
         // 2) Validar los datos del curso a crear -> Form Request
+        $datos = $request->validate([
+            'nombre' => 'required|max:255',
+            'instructor' => 'required|max:255',
+            'categoria' => 'required|max:255',
+            'nivel' => 'required|max:255',
+        ]);
+
         // 3) Guardar el curso en la BD
+        // INSERT INTO cursos(nombre, instructor, categoria, nivel) VALUES ('PHP intermedio', 'Gaston Paredes', 'Desarrollo Web', 'Intermedio');
+        Curso::create([
+            'nombre' => $datos['nombre'],
+            'instructor' => $datos['instructor'],
+            'categoria' => $datos['categoria'],
+            'nivel' => $datos['nivel'],
+        ]);
+
         // 4) Redirigir al usuario a la pagina de index del curso
+        return redirect()->route('cursos.index');
     }
 
     /**
@@ -46,21 +68,17 @@ class CursosController extends Controller
     public function show(string $id)
     {
         // 1) Buscar los datos del recurso segun el Id
-        $cursos = $this->datos();
-        $cursoAMostrar = null;
-        foreach ($cursos as $curso) {
-            if($curso['id'] == (int)$id) {
-                $cursoAMostrar = $curso;
-            }
-        }
+        // SELECT * FROM cursos WHERE id = $id;
+        $curso = Curso::find($id);
+
         // 2) Comprobar que el Id se corresponda con un registro valido
-        if($cursoAMostrar === null) {
+        if($curso === null) {
             abort(404);
         }
 
         // 3) Devolver la vista con el dato encontrado
         return view('cursos.show', [
-            'curso' => $cursoAMostrar,
+            'curso' => $curso,
         ]);
     }
 
@@ -70,20 +88,17 @@ class CursosController extends Controller
     public function edit(string $id)
     {
         // 1) Buscar los datos del recurso segun el Id
-        $cursos = $this->datos();
-        $cursoAMostrar = null;
-        foreach ($cursos as $curso) {
-            if($curso['id'] == (int)$id) {
-                $cursoAMostrar = $curso;
-            }
-        }
+        // SELECT * FROM cursos WHERE id = $id;
+        $curso = Curso::find($id);
+
         // 2) Comprobar que el Id se corresponda con un registro valido
-        if($cursoAMostrar === null) {
+        if($curso === null) {
             abort(404);
         }
+
         // 3) Mostrar el formulario de edición
         return view('cursos.edit', [
-            'curso' => $cursoAMostrar,
+            'curso' => $curso,
         ]);
     }
 
@@ -92,12 +107,28 @@ class CursosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd("Petición para actualizar el curso");
         // 1) Comprobar si el usuario tiene permisos para editar
         // 2) Comprobar si existe el curso a editar
         // 3) Validar los datos del curso a editar
+        $datos = $request->validate([
+            'nombre' => 'required|max:255',
+            'instructor' => 'required|max:255',
+            'categoria' => 'required|max:255',
+            'nivel' => 'required|max:255',
+        ]);
+
         // 4) Editar el curso en la BD
+        // UPDATE cursos SET nombre = 'nuevoNombre' WHERE id = $id;
+        Curso::where('id', $id)
+            ->update([
+                'nombre' => $datos['nombre'],
+                'instructor' => $datos['instructor'],
+                'categoria' => $datos['categoria'],
+                'nivel' => $datos['nivel'],
+            ]);
+
         // 5) Redirigir al usuario a la pagina de show del curso
+        return redirect()->route('cursos.show', ['curso' => $id]);
     }
 
     /**
@@ -105,44 +136,13 @@ class CursosController extends Controller
      */
     public function destroy(string $id)
     {
-        dd("Petición para eliminar un curso");
         // 1) Comprobar si el usuario tiene permisos para eliminar
         // 2) Comprobar si existe el curso a eliminar
         // 3) Eliminar el curso en la BD
-        // 4) Redirigir al usuario a la pagina de index del curso
-    }
+        // DELETE FROM cursos WHERE id = $id;
+        Curso::where('id', $id)->delete();
 
-    // Emula los datos guardados en una BD
-    private function datos() {
-        return [
-            [
-                'id' => 1,
-                'nombre' => 'Inteligencia Artificial desde cero',
-                'instructor' => 'Microsoft',
-                'nivel' => 'principiante',
-                'categoria' => 'Inteligencia Artificial',
-            ],
-            [
-                'id' => 2,
-                'nombre' => 'Python desde cero',
-                'instructor' => 'Amazon',
-                'nivel' => 'principiante',
-                'categoria' => 'Lenguajes de Programación',
-            ],
-            [
-                'id' => 3,
-                'nombre' => 'Matemática aplicada a la Ciencia de Datos',
-                'instructor' => 'Microsoft',
-                'nivel' => 'avanzado',
-                'categoria' => 'Ciencia de Datos',
-            ],
-            [
-                'id' => 4,
-                'nombre' => 'PHP Avanzado',
-                'instructor' => 'PHP Foundation',
-                'nivel' => 'intermedio',
-                'categoria' => 'Backend',
-            ],
-        ];
+        // 4) Redirigir al usuario a la pagina de index del curso
+        return redirect()->route('cursos.index');
     }
 }
