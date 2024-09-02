@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Clases\Url;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\ArchivoController;
+use App\Models\Usuario;
+use App\Models\Perfil;
+use App\Models\Direccion;
 
 Route::get('/', function () {
     return view('inicio');
@@ -69,3 +72,19 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+// Rutas de prueba de relaciones entre tablas
+Route::get('/relaciones', function () {
+    // $perfil_usuario = Perfil::find(1)->usuario->email;
+
+    // $direccion_usuario = Direccion::find(1)->usuario->nombre;
+
+    $direcciones_usuario = Usuario::find(1)->direcciones;
+
+    foreach ($direcciones_usuario as $direccion) {
+        echo $direccion->calle . " " . $direccion->numero . "<br>";
+    }
+
+    // dd($direccion_usuario);
+});
