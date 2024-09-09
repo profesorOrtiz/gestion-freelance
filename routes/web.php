@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Clases\Url;
 use App\Http\Controllers\CursosController;
 use App\Http\Controllers\ArchivoController;
+use App\Http\Controllers\ProfesionalesController;
+use App\Http\Controllers\TecnologiasController;
 use App\Models\Usuario;
 use App\Models\Perfil;
 use App\Models\Direccion;
@@ -88,3 +90,12 @@ Route::get('/relaciones', function () {
 
     // dd($direccion_usuario);
 });
+
+Route::get('/profesionales', [ProfesionalesController::class, 'index'])
+    ->name('profesionales.index');
+
+Route::get('/tecnologias', [TecnologiasController::class, 'index'])
+    ->name('tecnologias.index');
+
+Route::get('/tecnologias/{id}', [TecnologiasController::class, 'show'])
+    ->name('tecnologias.show');
