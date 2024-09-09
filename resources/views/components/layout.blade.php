@@ -24,10 +24,15 @@
             </div>
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="{{ route('contacto') }}" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Contacto</a>
-                <a href="{{ route('perfil') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Perfil</a>
-                <a href="{{ route('cursos.index') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Cursos</a>
+                <a href="{{ route('contacto') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('contacto') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    Contacto
+                </a>
+                <a href="{{ route('perfil') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('perfil') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    Perfil
+                </a>
+                <a href="{{ route('cursos.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('cursos.index') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    Cursos
+                </a>
               </div>
             </div>
           </div>
