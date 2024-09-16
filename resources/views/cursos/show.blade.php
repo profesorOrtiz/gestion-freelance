@@ -8,14 +8,16 @@
         <p>Nivel: {{ $curso['nivel'] }}</p>
     </div>
 
-    <div class="mt-6 flex gap-x-6">
-        <a href="/cursos/{{ $curso['id'] }}/edit" class="p-4 bg-blue-200 text-blue-900">Editar el curso</a>
+    @auth
+    <div class="flex mt-6 gap-x-6">
+        <a href="/cursos/{{ $curso['id'] }}/edit" class="p-4 text-blue-900 bg-blue-200">Editar el curso</a>
         <form method="POST" action="/cursos/{{ $curso['id'] }}" id="form-eliminar">
             @csrf
             @method('DELETE')
-            <button class="p-4 text-red-800 font-bold" id="boton-eliminar">Eliminar el curso</button>
+            <button class="p-4 font-bold text-red-800" id="boton-eliminar">Eliminar el curso</button>
         </form>
     </div>
+    @endauth
 </x-layout>
 <script>
     let botonEliminar = document.querySelector("#boton-eliminar");
