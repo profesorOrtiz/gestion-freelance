@@ -1,7 +1,11 @@
 <x-layout>
     <div class="flex justify-between">
         <x-titulo>Cursos</x-titulo>
-        <a href="{{ route('cursos.create') }}" class="p-4 bg-blue-200 text-blue-900 rounded font-bold">Crear curso</a>
+        @auth
+        @can('crear_curso')
+        <a href="{{ route('cursos.create') }}" class="p-4 font-bold text-blue-900 bg-blue-200 rounded">Crear curso</a>
+        @endcan
+        @endauth
     </div>
 
     @forelse ($cursos as $curso)

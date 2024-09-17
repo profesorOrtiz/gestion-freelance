@@ -10,12 +10,16 @@
 
     @auth
     <div class="flex mt-6 gap-x-6">
+        @can('editar_curso')
         <a href="/cursos/{{ $curso['id'] }}/edit" class="p-4 text-blue-900 bg-blue-200">Editar el curso</a>
+        @endcan
+        @can('eliminar_curso')
         <form method="POST" action="/cursos/{{ $curso['id'] }}" id="form-eliminar">
             @csrf
             @method('DELETE')
             <button class="p-4 font-bold text-red-800" id="boton-eliminar">Eliminar el curso</button>
         </form>
+        @endcan
     </div>
     @endauth
 </x-layout>

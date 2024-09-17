@@ -31,6 +31,9 @@ class CursosController extends Controller
      */
     public function create()
     {
+        if(! auth()->user()->hasPermissionTo('crear_curso')) {
+            abort(403);
+        }
         // Mostrar el formulario para crear un curso
         return view('cursos.create');
     }
@@ -41,6 +44,9 @@ class CursosController extends Controller
     public function store(Request $request)
     {
         // 1) Comprobar si el usuario tiene permisos para crear
+        if(! auth()->user()->hasPermissionTo('crear_curso')) {
+            abort(403);
+        }
         // 2) Validar los datos del curso a crear -> Form Request
         $datos = $request->validate([
             'nombre' => 'required|max:255',
@@ -87,6 +93,9 @@ class CursosController extends Controller
      */
     public function edit(string $id)
     {
+        if(! auth()->user()->hasPermissionTo('editar_curso')) {
+            abort(403);
+        }
         // 1) Buscar los datos del recurso segun el Id
         // SELECT * FROM cursos WHERE id = $id;
         $curso = Curso::find($id);
@@ -108,6 +117,9 @@ class CursosController extends Controller
     public function update(Request $request, string $id)
     {
         // 1) Comprobar si el usuario tiene permisos para editar
+        if(! auth()->user()->hasPermissionTo('editar_curso')) {
+            abort(403);
+        }
         // 2) Comprobar si existe el curso a editar
         // 3) Validar los datos del curso a editar
         $datos = $request->validate([
@@ -137,6 +149,13 @@ class CursosController extends Controller
     public function destroy(string $id)
     {
         // 1) Comprobar si el usuario tiene permisos para eliminar
+        // auth()->user()
+        // Auth::user()
+        // request()->user()
+        if(! auth()->user()->hasPermissionTo('eliminar_curso')) {
+            abort(403);
+        }
+
         // 2) Comprobar si existe el curso a eliminar
         // 3) Eliminar el curso en la BD
         // DELETE FROM cursos WHERE id = $id;
