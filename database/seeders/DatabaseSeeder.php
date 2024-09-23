@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Invocamos el CursoFactory para crear 10 ejemplos de cursos y guardarlos en la tabla
-        Curso::factory(10)->create();
+        // Curso::factory(10)->create();
+        $this->call(PermissionSeeder::class);
         // User::factory(10)->create();
 
         /* User::factory()->create([

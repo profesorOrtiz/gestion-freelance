@@ -45,6 +45,13 @@ class PermissionSeeder extends Seeder
         ]);
         $user_admin->assignRole($admin);
 
+        $user_admin2 = User::factory()->create([
+            'name' => 'admin2',
+            'email' => 'admin2@example.com',
+            'password' => Hash::make('password'),
+        ]);
+        $user_admin2->assignRole($admin);
+
         $user_escritor = User::factory()->create([
             'name' => 'escritor',
             'email' => 'escritor@example.com',

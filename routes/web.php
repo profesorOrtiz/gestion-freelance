@@ -10,6 +10,7 @@ use App\Http\Controllers\CursosController;
 use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\ProfesionalesController;
 use App\Http\Controllers\TecnologiasController;
+use App\Http\Controllers\NotificationController;
 use App\Models\Usuario;
 use App\Models\Perfil;
 use App\Models\Direccion;
@@ -99,3 +100,6 @@ Route::get('/tecnologias', [TecnologiasController::class, 'index'])
 
 Route::get('/tecnologias/{id}', [TecnologiasController::class, 'show'])
     ->name('tecnologias.show');
+
+Route::post('/notifications/{notification}/read', [NotificationController::class, 'read'])
+    ->name('notifications.read');

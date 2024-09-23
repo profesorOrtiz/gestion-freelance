@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
+use App\Models\User;
+use App\Notifications\CursoEditado;
 use Illuminate\Http\Request;
 
 class CursosController extends Controller
@@ -138,6 +140,19 @@ class CursosController extends Controller
                 'categoria' => $datos['categoria'],
                 'nivel' => $datos['nivel'],
             ]);
+
+        // 4.1) Enviar notificacion de curso editado
+        // Opcion 1: enviar la notificacion al usuario logueado
+        /* $curso = Curso::find($id);
+        $usuario = auth()->user();
+        $usuario->notify(new CursoEditado($curso)); */
+
+        // Opcion 2: enviar la notificacion a todos los admins
+        $curso = Curso::find($id);
+        $admins = User::role('admin')->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new CursoEditado($curso));
+        }
 
         // 5) Redirigir al usuario a la pagina de show del curso
         return redirect()->route('cursos.show', ['curso' => $id]);

@@ -46,7 +46,10 @@
             </a>
             @endguest
             @auth
-                <p class="text-white">{{ auth()->user()->name }}</p>
+                <div class="flex items-center ml-4">
+                    @include('components.notifications')
+                    <p class="text-white">{{ auth()->user()->name }}</p>
+                </div>
             @endauth
             {{-- <div class="flex items-center ml-4 md:ml-6">
               <button type="button" class="relative p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
