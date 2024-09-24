@@ -22,11 +22,13 @@
     <div id="notification-dropdown" class="absolute right-0 z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu" aria-orientation="vertical" aria-labelledby="notification-button">
         <div class="py-1" role="none">
             @foreach (auth()->user()->notifications as $notification)
+                {{-- Iterando en todas las notificaciones del usuario, pero quiero mostrar solamente las que no han sido leídas --}}
+                @if (! $notification->read_at)
                 <div class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 {{ ! $notification->read_at ? 'bg-gray-200' : '' }}">
                     <span>{{ $notification->data['message'] }}</span>
                     <small class="text-gray-500">{{ $notification->created_at->diffForHumans() }}</small>
                 </div>
-                @if (! $notification->read_at)
+
                 <form action="{{ route('notifications.read', $notification->id) }}" method="POST" class="flex items-center justify-end pr-2">
                     @csrf
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -55,6 +57,7 @@
     }
 
     // Close dropdown if clicked outside
+    // TODO: arreglar codigo
     window.onclick = function(event) {
         if (!event.target.matches('#notification-button')) {
             const dropdowns = document.getElementsByClassName("dropdown-content");
