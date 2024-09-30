@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\PerfilController;
+use App\Mail\CursoCreado;
 use Illuminate\Support\Facades\Route;
 use App\Clases\Url;
 use App\Http\Controllers\CursosController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\NotificationController;
 use App\Models\Usuario;
 use App\Models\Perfil;
 use App\Models\Direccion;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('inicio');
@@ -103,3 +105,17 @@ Route::get('/tecnologias/{id}', [TecnologiasController::class, 'show'])
 
 Route::post('/notifications/{notification}/read', [NotificationController::class, 'read'])
     ->name('notifications.read');
+
+/* Route::get("/mail", function() {
+    Mail::to('juan@gmail.com')
+        ->send(new CursoCreado());
+
+    return "Enviado";
+}); */
+
+Route::get('/work', function() {
+    dispatch(function() {
+        logger("Probando el queue worker");
+    })->delay(5);
+    return "Proceso enviado";
+});

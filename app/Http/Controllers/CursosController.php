@@ -6,6 +6,8 @@ use App\Models\Curso;
 use App\Models\User;
 use App\Notifications\CursoEditado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CursoCreado;
 
 class CursosController extends Controller
 {
@@ -59,12 +61,16 @@ class CursosController extends Controller
 
         // 3) Guardar el curso en la BD
         // INSERT INTO cursos(nombre, instructor, categoria, nivel) VALUES ('PHP intermedio', 'Gaston Paredes', 'Desarrollo Web', 'Intermedio');
-        Curso::create([
+        $curso = Curso::create([
             'nombre' => $datos['nombre'],
             'instructor' => $datos['instructor'],
             'categoria' => $datos['categoria'],
             'nivel' => $datos['nivel'],
         ]);
+
+        // 3.1) Enviar el correo de CursoCreado
+        Mail::to(auth()->user()->email)
+            ->send(new CursoCreado($curso));
 
         // 4) Redirigir al usuario a la pagina de index del curso
         return redirect()->route('cursos.index');
