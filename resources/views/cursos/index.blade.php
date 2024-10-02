@@ -10,7 +10,7 @@
 
     @forelse ($cursos as $curso)
         <div class="mt-4">
-            <a href="/cursos/{{ $curso['id'] }}">
+            <a href="/cursos/{{ $curso['id'] }}" class="inline-block">
                 <h2>{{ $curso['nombre'] }}</h2>
                 <p>Dictado por: {{ $curso['instructor'] }}</p>
             </a>
