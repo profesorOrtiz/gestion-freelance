@@ -24,14 +24,14 @@
             </div>
             <div class="hidden md:block">
               <div class="flex items-baseline ml-10 space-x-4">
-                <a href="{{ route('contacto') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('contacto') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
-                    Contacto
-                </a>
-                <a href="{{ route('perfil') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('perfil') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
-                    Perfil
+                <a href="{{ route('profesionales.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('profesionales.index') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    Profesionales
                 </a>
                 <a href="{{ route('cursos.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('cursos.index') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
                     Cursos
+                </a>
+                <a href="{{ route('contacto') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('contacto') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                    Contacto
                 </a>
               </div>
             </div>
@@ -48,7 +48,7 @@
             @auth
                 <div class="flex items-center ml-4">
                     @include('components.notifications')
-                    <p class="text-white">{{ auth()->user()->name }}</p>
+                    @include('components.enlaces-perfil')
                 </div>
             @endauth
             {{-- <div class="flex items-center ml-4 md:ml-6">
