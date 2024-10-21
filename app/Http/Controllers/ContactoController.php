@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ContactoController extends Controller
 {
-    public function mostrar() {
+    public function create() {
         $nombre = 'Juan Carlos Ortiz';
         return view('contacto', [
             'nombre' => $nombre,
@@ -15,7 +15,7 @@ class ContactoController extends Controller
         ]);
     }
 
-    public function guardar(ContactoGuardarRequest $request) {
+    public function store(ContactoGuardarRequest $request) {
         // 1) Validar -> automaticamente el ContactoGuardarRequest
 
         // 2) Procesar: guardar en la BD -> Proximamente

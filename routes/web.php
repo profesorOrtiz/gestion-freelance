@@ -12,10 +12,10 @@ Route::get('/', function () {
     return view('inicio');
 });
 
-Route::get('/contactanos', [ContactoController::class, 'mostrar'])
+Route::get('/contactanos', [ContactoController::class, 'create'])
     ->name('contacto');
 
-Route::post('/contactanos', [ContactoController::class, 'guardar'])
+Route::post('/contactanos', [ContactoController::class, 'store'])
     ->name('contacto.guardar');
 
 // Route::resource define automáticamente las 7 rutas de recurso y las enlaza con los métodos del controlador
