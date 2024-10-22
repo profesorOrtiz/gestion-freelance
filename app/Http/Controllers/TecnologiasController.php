@@ -22,4 +22,16 @@ class TecnologiasController extends Controller
             'tecnologia' => $tecnologia,
         ]);
     }
+
+    public function store(Request $request) {
+        $datos = $request->validate([
+            'nombre' => 'required|max:255',
+        ]);
+
+        Tecnologia::create([
+            'nombre' => $datos['nombre'],
+        ]);
+
+        return redirect()->route('tecnologias.index');
+    }
 }
