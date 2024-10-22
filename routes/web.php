@@ -27,6 +27,9 @@ Route::get('/profesionales', [ProfesionalesController::class, 'index'])
 Route::get('/tecnologias', [TecnologiasController::class, 'index'])
     ->name('tecnologias.index');
 
+Route::post('/tecnologias', [TecnologiasController::class, 'store'])
+    ->name('tecnologias.store');
+
 Route::get('/tecnologias/{id}', [TecnologiasController::class, 'show'])
     ->name('tecnologias.show');
 
