@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class TecnologiasController extends Controller
 {
+    protected $modelo;
+
+    public function __construct(Tecnologia $modelo) {
+        $this->modelo = $modelo;
+    }
+
     public function index() {
         $tecnologias = Tecnologia::all();
 
@@ -28,9 +34,11 @@ class TecnologiasController extends Controller
             'nombre' => 'required|max:255',
         ]);
 
-        Tecnologia::create([
+        $this->modelo->create($datos);
+
+        /* Tecnologia::create([
             'nombre' => $datos['nombre'],
-        ]);
+        ]); */
 
         return redirect()->route('tecnologias.index');
     }
